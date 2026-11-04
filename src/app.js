@@ -20,7 +20,7 @@ function createApp(store) {
   });
 
   app.get('/tasks', wrap(async (req, res) => {
-    res.json(await tasks.listTasks(store));
+    res.json(await tasks.listTasks(store, { priority: req.query.priority }));
   }));
 
   app.post('/tasks', wrap(async (req, res) => {
