@@ -1,0 +1,17 @@
+* c45017f Add due date support to tasks
+| * 95bb473 Add due date support to tasks
+|/  
+*   70a43be Merge pull request #1 from dimitrikvateladze1-hub/feature/priority-filter
+|\  
+| *   66970dd Merge main into feature/priority-filter, keep newest-first order with priority filter
+| |\  
+| |/  
+|/|   
+* | 0e8b031 docs: add priority-filter PR link
+* | 16d5e96 docs: add value stream and DORA metrics analysis
+* | 7635d6e docs: fill in submission details
+* | a91f1fe Add Docker setup, smoke script and submission form
+* | 069c317 Return newest tasks first
+| * 95a8b62 Add priority filter to task list
+|/  
+* 12a3713 Add task API with memory and Redis stores

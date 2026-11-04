@@ -11,7 +11,7 @@ GitHub მომხმარებელი: dimitrikvateladze1-hub
 ## Git workflows
 
 - PR, feature/priority-filter: https://github.com/dimitrikvateladze1-hub/devops-midterm-1/pull/1
-- PR, feature/due-date:
+- PR, feature/due-date: https://github.com/dimitrikvateladze1-hub/devops-midterm-1/pull/2
 
 ## CI GitHub Actions-ით
 
