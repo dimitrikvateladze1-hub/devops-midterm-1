@@ -1,13 +1,29 @@
 services:
   api:
-    build: .
+    build:
+      context: .
+      args:
+        APP_VERSION: ${APP_VERSION:-dev}
     ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
-      - REDIS_URL=redis://localhost:6379
+      - "${PORT:-3000}:3000"
+    env_file:
+      - .env
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
 
   redis:
     image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  redis-data:
