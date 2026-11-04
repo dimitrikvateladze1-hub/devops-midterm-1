@@ -7,8 +7,22 @@ function httpError(status, message) {
   return err;
 }
 
+function parseDueDate(value) {
+  if (value == null) {
+    return null;
+  }
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    throw httpError(400, 'invalid dueDate');
+  }
+  const today = new Date().toISOString().slice(0, 10);
+  if (Number.isNaN(Date.parse(value)) || value < today) {
+    throw httpError(400, 'invalid dueDate');
+  }
+  return value;
+}
+
 async function createTask(store, input = {}) {
-  const { title, priority } = input;
+  const { title, priority, dueDate } = input;
   if (typeof title !== 'string' || title.length === 0) {
     throw httpError(400, 'title is required');
   }
@@ -22,6 +36,7 @@ async function createTask(store, input = {}) {
   return store.add({
     title,
     priority: level,
+    dueDate: parseDueDate(dueDate),
     done: false,
     completedAt: null,
     createdAt: new Date().toISOString(),
