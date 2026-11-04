@@ -1,0 +1,28 @@
+{
+  "name": "devops-midterm-1",
+  "version": "1.0.0",
+  "description": "Task API for the DevOps midterm",
+  "main": "src/server.js",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": ["src/**/*.js", "!src/server.js", "!src/store/redis.js"]
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "redis": "^4.7.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
