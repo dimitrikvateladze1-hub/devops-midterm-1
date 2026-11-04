@@ -10,7 +10,6 @@ function createStore() {
 }
 
 const port = Number(process.env.PORT) || 3000;
-const startedAt = Date.now();
 const server = createApp(createStore()).listen(port, () => {
   console.log(`listening on ${port}`);
 });

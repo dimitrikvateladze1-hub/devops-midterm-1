@@ -4,15 +4,28 @@
   "description": "Task API for the DevOps midterm",
   "main": "src/server.js",
   "private": true,
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "start": "node src/server.js",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "lint": "eslint ."
   },
   "jest": {
     "testEnvironment": "node",
-    "collectCoverageFrom": ["src/**/*.js", "!src/server.js", "!src/store/redis.js"]
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/server.js",
+      "!src/store/redis.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 80,
+        "branches": 80
+      }
+    }
   },
   "dependencies": {
     "express": "^4.21.2",
