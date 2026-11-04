@@ -1,8 +1,8 @@
 # ჩაბარების ფორმა
 
-სახელი, გვარი:
-GitHub მომხმარებელი:
-რეპოზიტორია:
+სახელი, გვარი: Dimitri Kvateladze
+GitHub მომხმარებელი: dimitrikvateladze1-hub
+რეპოზიტორია: https://github.com/dimitrikvateladze1-hub/devops-midterm-1
 
 ## Value Stream და DORA მეტრიკები
 
