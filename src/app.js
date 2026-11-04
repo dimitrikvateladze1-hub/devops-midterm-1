@@ -11,7 +11,7 @@ function createApp(store) {
 
   app.get('/health', wrap(async (req, res) => {
     const ok = await store.ping();
-    res.status(ok ? 200 : 503).json({ status: ok ? 'ok' : 'unavailable' });
+    res.status(503).json({ status: ok ? 'ok' : 'unavailable' });
   }));
 
   app.get('/version', (req, res) => {
