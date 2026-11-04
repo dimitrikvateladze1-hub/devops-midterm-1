@@ -19,6 +19,13 @@ describe('tasks', () => {
       .rejects.toMatchObject({ status: 400 });
   });
 
+  test('listTasks returns the newest tasks first', async () => {
+    await tasks.createTask(store, { title: 'Old' });
+    await tasks.createTask(store, { title: 'New' });
+    const list = await tasks.listTasks(store);
+    expect(list.map((t) => t.title)).toEqual(['New', 'Old']);
+  });
+
   test('completeTask marks the task as done', async () => {
     const task = await tasks.createTask(store, { title: 'Write report' });
     const done = await tasks.completeTask(store, task.id);

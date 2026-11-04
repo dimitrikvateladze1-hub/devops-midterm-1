@@ -30,10 +30,11 @@ async function createTask(store, input = {}) {
 
 async function listTasks(store, { priority } = {}) {
   const all = await store.all();
+  const sorted = all.sort((a, b) => b.id - a.id);
   if (priority == null) {
-    return all;
+    return sorted;
   }
-  return all.filter((t) => t.priority === priority);
+  return sorted.filter((t) => t.priority === priority);
 }
 
 async function getTask(store, id) {
