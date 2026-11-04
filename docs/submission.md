@@ -15,7 +15,7 @@ GitHub მომხმარებელი: dimitrikvateladze1-hub
 
 ## CI GitHub Actions-ით
 
-- წითელი workflow run:
+- წითელი workflow run: https://github.com/dimitrikvateladze1-hub/devops-midterm-1/actions/runs/41873137096
 
 ## ტესტირება და კოდის ხარისხი
 

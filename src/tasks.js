@@ -1,5 +1,4 @@
 const PRIORITIES = ['low', 'medium', 'high'];
-const MAX_PAGE_SIZE = 50;
 
 function httpError(status, message) {
   const err = new Error(message);
@@ -7,15 +6,23 @@ function httpError(status, message) {
   return err;
 }
 
+function isMissing(value) {
+  return value === undefined || value === null;
+}
+
 function parseDueDate(value) {
-  if (value == null) {
+  if (isMissing(value)) {
     return null;
   }
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
     throw httpError(400, 'invalid dueDate');
   }
+  const parsed = new Date(`${value}T00:00:00Z`);
+  if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== value) {
+    throw httpError(400, 'invalid dueDate');
+  }
   const today = new Date().toISOString().slice(0, 10);
-  if (Number.isNaN(Date.parse(value)) || value < today) {
+  if (value < today) {
     throw httpError(400, 'invalid dueDate');
   }
   return value;
@@ -23,10 +30,14 @@ function parseDueDate(value) {
 
 async function createTask(store, input = {}) {
   const { title, priority, dueDate } = input;
-  if (typeof title !== 'string' || title.length === 0) {
+  if (typeof title !== 'string') {
     throw httpError(400, 'title is required');
   }
-  if (title.length > 100) {
+  const cleanTitle = title.trim();
+  if (cleanTitle.length === 0) {
+    throw httpError(400, 'title is required');
+  }
+  if (cleanTitle.length > 100) {
     throw httpError(400, 'title is too long');
   }
   const level = priority ?? 'medium';
@@ -34,7 +45,7 @@ async function createTask(store, input = {}) {
     throw httpError(400, 'invalid priority');
   }
   return store.add({
-    title,
+    title: cleanTitle,
     priority: level,
     dueDate: parseDueDate(dueDate),
     done: false,
@@ -46,7 +57,7 @@ async function createTask(store, input = {}) {
 async function listTasks(store, { priority } = {}) {
   const all = await store.all();
   const sorted = all.sort((a, b) => b.id - a.id);
-  if (priority == null) {
+  if (isMissing(priority)) {
     return sorted;
   }
   return sorted.filter((t) => t.priority === priority);
@@ -54,7 +65,7 @@ async function listTasks(store, { priority } = {}) {
 
 async function getTask(store, id) {
   const all = await store.all();
-  const task = all.find((t) => t.id == id);
+  const task = all.find((t) => String(t.id) === String(id));
   if (!task) {
     throw httpError(404, 'task not found');
   }
@@ -63,6 +74,9 @@ async function getTask(store, id) {
 
 async function completeTask(store, id) {
   const task = await getTask(store, id);
+  if (task.done) {
+    throw httpError(409, 'task already completed');
+  }
   task.done = true;
   task.completedAt = new Date().toISOString();
   return store.update(task);
@@ -80,7 +94,7 @@ async function stats(store) {
     total: all.length,
     done,
     open: all.length - done,
-    doneRate: Math.round(done / all.length),
+    doneRate: all.length === 0 ? 0 : Math.round((done / all.length) * 100),
   };
 }
 

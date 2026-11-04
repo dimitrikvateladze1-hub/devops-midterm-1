@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const tasks = require('./tasks');
 
 const wrap = (handler) => (req, res, next) => handler(req, res).catch(next);

@@ -17,7 +17,7 @@ function createRedisStore(url) {
       try {
         await client.ping();
         return true;
-      } catch (err) {
+      } catch {
         return false;
       }
     },
