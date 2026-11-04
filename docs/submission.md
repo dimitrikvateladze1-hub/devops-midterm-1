@@ -24,7 +24,7 @@ GitHub მომხმარებელი: dimitrikvateladze1-hub
 
 ## Docker
 
-- PR, docker/hardening:
+- PR, docker/hardening: https://github.com/dimitrikvateladze1-hub/devops-midterm-1/pull/4
 
 ## CD და rollback
 
