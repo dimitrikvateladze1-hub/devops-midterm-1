@@ -19,8 +19,8 @@ GitHub მომხმარებელი: dimitrikvateladze1-hub
 
 ## ტესტირება და კოდის ხარისხი
 
-- მწვანე workflow run:
-- coverage artifact:
+- მწვანე workflow run: https://github.com/dimitrikvateladze1-hub/devops-midterm-1/actions/runs/41875300285
+- coverage artifact: https://github.com/dimitrikvateladze1-hub/devops-midterm-1/actions/runs/41875300285/artifacts/13346107210
 
 ## Docker
 
