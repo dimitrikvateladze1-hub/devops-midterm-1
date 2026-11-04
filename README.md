@@ -1,5 +1,7 @@
 # Task API
 
+![CI](https://github.com/dimitrikvateladze1-hub/devops-midterm-1/actions/workflows/ci.yml/badge.svg)
+
 ამოცანების მართვის მცირე REST API. მონაცემებს ინახავს მეხსიერებაში, ხოლო თუ `REDIS_URL` მითითებულია, Redis-ში.
 
 ## გაშვება
