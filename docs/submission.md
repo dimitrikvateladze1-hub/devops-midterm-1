@@ -30,4 +30,4 @@ GitHub მომხმარებელი: dimitrikvateladze1-hub
 
 - v1.0.0 workflow run: https://github.com/dimitrikvateladze1-hub/devops-midterm-1/actions/runs/41890750747
 - v1.1.0 workflow run: https://github.com/dimitrikvateladze1-hub/devops-midterm-1/actions/runs/41892397208
-- v1.1.1 workflow run:
+- v1.1.1 workflow run: https://github.com/dimitrikvateladze1-hub/devops-midterm-1/actions/runs/41893634684
